@@ -1,0 +1,7 @@
+info:
+  map:
+    projectName: @project.name@
+    version: @project.version@
+    buildName: @project.build.finalName@
+    parentVersion: @project.parent.version@
+    buildTime: @timestamp@
