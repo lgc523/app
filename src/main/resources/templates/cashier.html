@@ -1,0 +1,14 @@
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<form name="auto_submit_form" method="post"
+      th:action="${url}">
+    <input type="hidden" name="biz_content"
+           th:value="${biz}">
+    <input type="submit" value="立刻提交" style="display:none">
+</form>
+<script>document.forms[0].submit();</script>
+</body>
+</html>

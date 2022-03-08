@@ -1,0 +1,7 @@
+App-Name: ${application.title}
+Version: ${application.appInfo}
+Spring Boot Version: ${spring-boot.version}
+Jar: ${application.jar}
+BuildTime: ${application.buildTime}
+RuntimeName: ${application.runtimeName}
+RuntimeVersion: ${application.runtimeVersion}

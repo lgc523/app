@@ -5,3 +5,20 @@ info:
     buildName: @project.build.finalName@
     parentVersion: @project.parent.version@
     buildTime: @timestamp@
+application:
+  title: @artifactId@
+  appInfo: @artifactId@, @project.version@
+  jar: @project.build.finalName@
+  buildTime: @timestamp@
+  runtimeName: @java.runtime.name@
+  runtimeVersion: @java.runtime.version@
+
+#spring:
+#  thymeleaf:
+#    cache: false
+#    prefix: classpath:/templates/
+#    encoding: UTF-8
+#    suffix: .html
+#    mode: HTML
+#    servlet:
+#      content-type: text/html
