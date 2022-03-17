@@ -3,7 +3,10 @@ package dev.spider;
 import dev.spider.configs.ProjectInfo;
 import dev.spider.entity.Result;
 import dnl.utils.text.table.TextTable;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
 
@@ -35,20 +39,22 @@ public class App {
     public String info() {
         Map<String, String> map = projectInfo.getMap();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n[App info]");
-        sb.append("\nApplication name : " + map.get("projectName"));
-        sb.append("\nBuild version    : " + map.get("version"));
-        sb.append("\nPort             : " + map.get("port"));
-        sb.append("\nBuild name       : " + map.get("buildName"));
-        sb.append("\nParent version   : " + map.get("parentVersion"));
-        sb.append("\nBuild timestamp  : " + map.get("buildTime") + "\n");
+        String sb = "\n[App info]" +
+                "\nArtifactId       : " + map.get("artifactId") +
+                "\nApplication name : " + map.get("projectName") +
+                "\nBuild version    : " + map.get("version") +
+                "\nBuild name       : " + map.get("buildName") +
+                "\nPort             : " + map.get("port") +
+                "\nBuild profile    : " + map.get("profile") +
+                "\nRuntime  Name    : " + map.get("runtimeName") +
+                "\nRuntime  Version : " + map.get("runtimeVersion") +
+                "\nBuild timestamp  : " + map.get("buildTime") + "\n";
 
 
         String[][] twoArrayObject = ProjectInfo.getTwoArrayObject(map);
         TextTable textTable = new TextTable(new String[]{"Metric", "value"}, twoArrayObject);
         textTable.printTable();
-        return sb.toString();
+        return sb;
     }
 
     /**
@@ -67,7 +73,8 @@ public class App {
     }
 
     @Data
-    public static class Foo {
+    @NoArgsConstructor
+    public static class Foo implements Serializable {
         String name;
 
         public Foo(String name) {
@@ -76,6 +83,7 @@ public class App {
     }
 
     @Data
+    @NoArgsConstructor
     public static class Bar {
         String val;
 

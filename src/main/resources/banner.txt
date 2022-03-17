@@ -1,7 +1,5 @@
-App-Name: ${application.title}
-Version: ${application.appInfo}
-Spring Boot Version: ${spring-boot.version}
-Jar: ${application.jar}
-BuildTime: ${application.buildTime}
-RuntimeName: ${application.runtimeName}
-RuntimeVersion: ${application.runtimeVersion}
+${AnsiBackground.BRIGHT_RED}
+不发视频，给你个大逼兜
+springboot version:${spring-boot.formatted-version}
+${application.formatted-version}
+${AnsiBackground.BRIGHT_RED}

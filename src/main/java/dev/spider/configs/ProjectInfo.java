@@ -7,6 +7,7 @@ import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import java.util.Map;
 @Component
 @ConfigurationProperties(prefix = "info")
 public class ProjectInfo implements InitializingBean, ApplicationListener<WebServerInitializedEvent> {
+
     private Map<String, String> map;
 
     public static String[][] getTwoArrayObject(Map<String, String> map) {
@@ -34,15 +36,15 @@ public class ProjectInfo implements InitializingBean, ApplicationListener<WebSer
         return object;
     }
 
-
-    @Override
-    public void onApplicationEvent(WebServerInitializedEvent event) {
-        map.put("port", String.valueOf(event.getWebServer().getPort()));
-    }
-
     @Override
     public void afterPropertiesSet() {
         String buildTime = map.get("buildTime");
         map.put("buildTime", buildTime + " [UTC]");
+    }
+
+    @Override
+    public void onApplicationEvent(WebServerInitializedEvent event) {
+        map.put("port", String.valueOf(event.getWebServer().getPort()));
+        map.put("profile", Arrays.toString(event.getApplicationContext().getEnvironment().getActiveProfiles()));
     }
 }

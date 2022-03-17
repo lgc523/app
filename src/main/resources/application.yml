@@ -1,24 +1,16 @@
+spring:
+  profiles:
+    active: prod
 info:
   map:
-    projectName: @project.name@
-    version: @project.version@
-    buildName: @project.build.finalName@
-    parentVersion: @project.parent.version@
-    buildTime: @timestamp@
-application:
-  title: @artifactId@
-  appInfo: @artifactId@, @project.version@
-  jar: @project.build.finalName@
-  buildTime: @timestamp@
-  runtimeName: @java.runtime.name@
-  runtimeVersion: @java.runtime.version@
+    artifactId: '@artifactId@'
+    projectName: '@project.name@'
+    version: '@project.version@'
+    buildName: '@project.build.finalName@'
+    runtimeName: '@java.runtime.name@'
+    runtimeVersion: '@java.runtime.version@'
+    buildTime: '@timestamp@'
 
-#spring:
-#  thymeleaf:
-#    cache: false
-#    prefix: classpath:/templates/
-#    encoding: UTF-8
-#    suffix: .html
-#    mode: HTML
-#    servlet:
-#      content-type: text/html
+secret:
+  key: GKH/YF7zxakdOQpzLTvCNbXDwQxySj0O
+  enabled: true
