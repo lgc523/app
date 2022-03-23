@@ -1,6 +1,6 @@
 package dev.spider.api;
 
-import dev.spider.hook.valid.ValidGroup;
+import dev.spider.hooks.valid.ValidGroup;
 import dev.spider.entity.Result;
 import dev.spider.entity.ao.FooValid;
 import org.springframework.validation.annotation.Validated;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import dev.spider.entity.ao.BarValid;
 
 import javax.validation.Valid;
 
@@ -67,6 +68,12 @@ public class ValidController {
     @SuppressWarnings("rawtypes")
     public Result validEmbed(@Valid @RequestBody FooValid fooValid) {
         return Result.success(fooValid);
+    }
+
+
+    @PostMapping("bar")
+    public Result validBean(@Valid @RequestBody BarValid req) {
+        return Result.success(req);
     }
 
 }

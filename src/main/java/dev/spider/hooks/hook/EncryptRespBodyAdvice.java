@@ -1,7 +1,8 @@
-package dev.spider.configs;
+package dev.spider.hooks.hook;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.spider.annotation.SIProtection;
+import dev.spider.configs.SecretProcess;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;

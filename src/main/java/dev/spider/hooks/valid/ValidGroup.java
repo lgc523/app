@@ -1,4 +1,4 @@
-package dev.spider.hook.valid;
+package dev.spider.hooks.valid;
 
 public class ValidGroup {
     public interface DefaultGroup {

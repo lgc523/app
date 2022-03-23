@@ -1,4 +1,4 @@
-package dev.spider.hook.aspect;
+package dev.spider.hooks.aspect;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.ProceedingJoinPoint;

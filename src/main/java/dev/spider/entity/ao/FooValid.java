@@ -1,6 +1,6 @@
 package dev.spider.entity.ao;
 
-import dev.spider.hook.valid.ValidGroup;
+import dev.spider.hooks.valid.ValidGroup;
 import lombok.Data;
 
 import javax.validation.Valid;

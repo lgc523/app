@@ -1,4 +1,4 @@
-package dev.spider.hook.hook;
+package dev.spider.hooks.hook;
 
 import com.google.common.base.Joiner;
 import dev.spider.entity.Result;
