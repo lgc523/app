@@ -6,7 +6,6 @@ public interface SecretProcess {
 
     String decrypt(String data);
 
-    String getAlgorithm();
 
     class Hex {
         private static final char[] HEX = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',

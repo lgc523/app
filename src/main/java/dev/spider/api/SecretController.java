@@ -1,8 +1,9 @@
 package dev.spider.api;
 
-import dev.spider.App;
 import dev.spider.annotation.SIProtection;
 import dev.spider.entity.Result;
+import dev.spider.entity.ao.BodyDTO;
+import dev.spider.entity.ao.Foo;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ public class SecretController {
 
     @PostMapping("test")
     @SIProtection
-    public Result secret(@RequestBody App.Foo req) {
+    public Result secret(@RequestBody BodyDTO<Foo> req) {
         return Result.success(req);
     }
 }

@@ -21,14 +21,17 @@ public class TestAES {
     public void testAesEnDeCrept() throws Exception {
         App.Foo foo = new App.Foo("2022-03-18 12:31:00");
         String input = JsonUtil.toJsonString(foo);
+        String body = Base64.getEncoder().encodeToString(input.getBytes(StandardCharsets.UTF_8));
+        System.out.println(body);
         SecretKey key = generateKey(128);
         IvParameterSpec ivParameterSpec = generateIv();
         String algorithm = "AES/CBC/PKCS5Padding";
-        String cipherText = encrypt(algorithm, input, key, ivParameterSpec);
+        String cipherText = encrypt(algorithm, body, key, ivParameterSpec);
         System.out.println(cipherText);
         String plainText = decrypt(algorithm, cipherText, key, ivParameterSpec);
         System.out.println(plainText);
-        Assertions.assertEquals(input, plainText);
+        String s = new String(Base64.getDecoder().decode(plainText.getBytes(StandardCharsets.UTF_8)));
+        Assertions.assertEquals(input, s);
 
 
     }
@@ -71,7 +74,7 @@ public class TestAES {
     }
 
     @Test
-    public void testAES(){
+    public void testAES() {
         App.Foo foo = new App.Foo("2022-03-18 12:31:00");
         String input = JsonUtil.toJsonString(foo);
         String encrypt = encrypt(input);
@@ -106,8 +109,9 @@ public class TestAES {
     }
 
     public Key keySpec() {
-        return this.getKeySpec("AES") ;
+        return this.getKeySpec("AES");
     }
+
     public Key getKeySpec(String algorithm) {
         if (algorithm == null || algorithm.trim().length() == 0) {
             return null;

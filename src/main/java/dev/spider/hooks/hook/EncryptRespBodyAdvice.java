@@ -37,7 +37,8 @@ public class EncryptRespBodyAdvice implements ResponseBodyAdvice<Object> {
         }
         try {
             String jsonStr = new ObjectMapper().writeValueAsString(body);
-            return secretProcess.encrypt(jsonStr);
+//            return secretProcess.encrypt(jsonStr);
+            return jsonStr;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

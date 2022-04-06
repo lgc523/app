@@ -12,5 +12,5 @@ info:
     buildTime: '@timestamp@'
 
 secret:
-  key: GKH/YF7zxakdOQpzLTvCNbXDwQxySj0O
+  key: G242nUlMmiT1tcToX29xkg==
   enabled: true

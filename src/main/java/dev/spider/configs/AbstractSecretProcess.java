@@ -1,63 +1,29 @@
 package dev.spider.configs;
 
+import dev.spider.util.AES;
+
 import javax.annotation.Resource;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.util.Base64;
 
 public abstract class AbstractSecretProcess implements SecretProcess {
-    @Resource
-    private SecretConfig.SecretProperties props;
-
-    public abstract Key keySpec();
 
 
     @Override
     public String decrypt(String data) {
-        try {
-            Cipher cipher = Cipher.getInstance(getAlgorithm());
-            cipher.init(Cipher.DECRYPT_MODE, keySpec());
-            byte[] decryptBytes = cipher.doFinal(Hex.decode(data));
-            return new String(decryptBytes);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        return AES.aesDecrypt(data, AES.aesKey);
     }
+
 
     @Override
     public String encrypt(String data) {
-        try {
-            Cipher cipher = Cipher.getInstance(getAlgorithm());
-            cipher.init(Cipher.ENCRYPT_MODE, keySpec());
-            return Hex.encode(cipher.doFinal(data.getBytes(StandardCharsets.UTF_8)));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Key getKeySpec(String algorithm) {
-        if (algorithm == null || algorithm.trim().length() == 0) {
-            return null;
-        }
-        String secretKey = props.getKey();
-        switch (algorithm.toUpperCase()) {
-            case "AES":
-                return new SecretKeySpec(secretKey.getBytes(), "AES");
-            case "DES":
-                Key key;
-                try {
-                    DESKeySpec desKeySpec = new DESKeySpec(secretKey.getBytes());
-                    SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("DES");
-                    key = secretKeyFactory.generateSecret(desKeySpec);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                return key;
-            default:
-                return null;
-        }
+//        return AES.aesEncrypt(data, AES.aesKey);
+        return data;
     }
 }
